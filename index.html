@@ -2,9 +2,59 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>使用した画像集</title>
+  <title>画像位置調整</title>
+  <style>
+    .wrapper {
+      text-align: center;
+      max-width: 500px;
+      margin: 30px auto;
+    }
+    .preview {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      object-position: 50% 50%;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+    .sliders {
+      margin-top: 15px;
+    }
+    .sliders label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+  </style>
 </head>
 <body>
+  <div class="wrapper">
+    <h2>🎆 画像の位置をスライダーで調整 🎆</h2>
+    <img src="fireworks.PNG" class="preview" id="imgPreview">
+
+    <div class="sliders">
+      <label for="xRange">横位置 (X%)</label>
+      <input type="range" id="xRange" min="0" max="100" value="50">
+
+      <label for="yRange">縦位置 (Y%)</label>
+      <input type="range" id="yRange" min="0" max="100" value="50">
+    </div>
+  </div>
+
+  <script>
+    const img = document.getElementById("imgPreview");
+    const xRange = document.getElementById("xRange");
+    const yRange = document.getElementById("yRange");
+
+    function updatePosition() {
+      const x = xRange.value;
+      const y = yRange.value;
+      img.style.objectPosition = `${x}% ${y}%`;
+    }
+
+    xRange.addEventListener("input", updatePosition);
+    yRange.addEventListener("input", updatePosition);
+  </script>
+
   <img src="camera.jpg" alt="camera1">
   <img src="NY.JPG" alt="NewYork">
   <img src="NY2.JPG" alt="NewYork">
@@ -12,5 +62,8 @@
   <img src="IMG_0589.JPG" alt="Google1">
   <img src="IMG_0631.JPG" alt="Google3">
   <img src="fireworks.PNG" alt="hana">
+
 </body>
 </html>
+
+
